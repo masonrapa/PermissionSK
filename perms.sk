@@ -1,0 +1,240 @@
+command /setrank <player> <text>:
+	permission: ragestaff.admin
+	permission message: &4!Usted no es Staff del servidor!
+	trigger:
+		set {rango} to arg 2
+		set {usuario} to arg 1
+		broadcast ""
+		broadcast "&2El jugador &3%{usuario}% &2ha subido de Nivel a: &4%{rango}%"
+		broadcast ""
+		if {rango} is "owner":
+			set {owner.%arg 1%} to true
+			set {admin.%arg 1%} to false
+			set {staff.%arg 1%} to false
+			set {pandito.%arg 1%} to false
+			set {rage.%arg 1%} to false
+			set {vip.%arg 1%} to false
+			set {user.%arg 1%} to false
+			set {permission.%arg 1%} to true
+		if {rango} is "admin":
+			set {admin.%arg 1%} to true
+			set {owner.%arg 1%} to false
+			set {staff.%arg 1%} to false
+			set {pandito.%arg 1%} to false
+			set {rage.%arg 1%} to false
+			set {vip.%arg 1%} to false
+			set {user.%arg 1%} to false
+			set {permission.%arg 1%} to true
+		if {rango} is "staff":
+			set {staff.%arg 1%} to true
+			set {admin.%arg 1%} to false
+			set {owner.%arg 1%} to false
+			set {pandito.%arg 1%} to false
+			set {rage.%arg 1%} to false
+			set {vip.%arg 1%} to false
+			set {user.%arg 1%} to false
+			set {permission.%arg 1%} to true
+		if {rango} is "pandito":
+			set {pandito.%arg 1%} to true
+			set {admin.%arg 1%} to false
+			set {staff.%arg 1%} to false
+			set {owner.%arg 1%} to false
+			set {rage.%arg 1%} to false
+			set {vip.%arg 1%} to false
+			set {user.%arg 1%} to false
+			set {permission.%arg 1%} to false
+		if {rango} is "rage":
+			set {rage.%arg 1%} to true
+			set {admin.%arg 1%} to false
+			set {staff.%arg 1%} to false
+			set {pandito.%arg 1%} to false
+			set {owner.%arg 1%} to false
+			set {vip.%arg 1%} to false
+			set {user.%arg 1%} to false
+			set {permission.%arg 1%} to false
+		if {rango} is "vip":
+			set {vip.%arg 1%} to true
+			set {admin.%arg 1%} to false
+			set {staff.%arg 1%} to false
+			set {pandito.%arg 1%} to false
+			set {rage.%arg 1%} to false
+			set {owner.%arg 1%} to false
+			set {user.%arg 1%} to false
+			set {permission.%arg 1%} to false
+		if {rango} is "user":
+			set {user.%arg 1%} to true
+			set {admin.%arg 1%} to false
+			set {staff.%arg 1%} to false
+			set {pandito.%arg 1%} to false
+			set {rage.%arg 1%} to false
+			set {vip.%arg 1%} to false
+			set {owner.%arg 1%} to false
+			set {permission.%arg 1%} to false
+on first join:
+	Execute console command "setrank %player% user"
+	broadcast ""
+	broadcast "El usuario %player% Se unio por primera vez al servidor!"
+	broadcast "Que comience su aventura!!!"
+	broadcast ""
+
+on chat:
+	cancel event
+	if {owner.%player%} is true:
+		message "&5[&dOWNER&5] &6%player% : &f%colored message%" to all players
+	if {admin.%player%} is true:
+		message "&4[&cADMIN&4] &6%player% : &f%colored message%" to all players
+	if {staff.%player%} is true:
+		message "&1[&3STAFF&1] &6%player% : &f%colored message%" to all players
+	if {pandito.%player%} is true:
+		message "&9[&bPANDITO&9] &6%player% : &f%colored message%" to all players
+	if {rage.%player%} is true:
+		message "&6[&eRAGE&6] &6%player% : &f%colored message%" to all players
+	if {vip.%player%} is true:
+		message "&2[&aMAGO&2] &6%player% : &f%message%" to all players
+	if {user.%player%} is true:
+		message "&8[&fPRINCIPIANTE&8] &6%player% : &f%message%" to all players
+	else:
+		cancel event
+
+command /asdfghjkl:
+	trigger:
+		message ""
+		message "<blue> RageMC Staff Commands <purple> by zMasonrapa"
+		message ""
+		message "<gold> /anuncio (mensaje)"
+		message "&aEnvia un mensaje a todos los usuarios de la modalidad"
+		message ""
+		message "<gold> /sancion (norma) (usuario)"
+		message "&aSanciona a un usario con el castigo correspondiente por su incumplimiento"
+		message ""
+		message "<gold> /observar (usuario) // /volver"
+		message "&aTe permite espectear al usuario en modo invisible y volver al punto donde te encontrabas"
+		message ""
+		message "<gold> /limpiar"
+		message "&aLimpia el chat de todos los jugadores"
+		message ""
+		message "<gold> /ss (usuario)"
+		message "&aPone en SS al jugador"
+		message ""
+		message "<gold> /dss (usuario)"
+		message "&aQuita el modo SS al jugador"
+		message ""
+
+command /anuncio [<text>]:
+	trigger:
+		if {permission.%player%} is true:
+			if arg-1 is not set:
+				message "&cSetea un mensaje para anunciar ej: [/anuncio Bienvenidos]"
+			if arg-1 is set:
+				broadcast ""
+				broadcast "&1-----------[ &cRage&4MC &aANUNCIO &1]---------"
+				broadcast "%colored arg-1%"
+				broadcast ""
+		else:
+			message "&4!Usted no es Staff del servidor!"
+			
+command /limpiar:
+	trigger:
+		if {permission.%player%} is true:
+			set {player} to player
+			message ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast ""
+			broadcast "&c[RageMC] &6chat borrado por el staff &c%player%"
+		else:
+			message "&4!Usted no es Staff del servidor!"
+			
+command /observar [<player>]:
+	trigger:
+		if {permission.%player%} is true:
+			set {loc} to location of {player}
+			set {sospechoso} to arg 1
+			execute console command "/gamemode 3 %player%"
+			teleport {player} to {sospechoso}
+			message "&bAhora estas espectando al jugador, por favor, no abuse del comando o será demoteado del Staff"
+			message "Punto de vuelta: %{loc}% "
+		else:
+			message "&4!Usted no es Staff del servidor!"
+	
+command /volver:
+	trigger:
+		if {permission.%player%} is true:
+			teleport player to {loc}
+			execute console command "/gamemode 0 %player%"
+		else:
+			message "&4!Usted no es Staff del servidor!"
+	
+command /ss [<player>]:
+	trigger:
+		if {permission.%player%} is true:
+			set {sospech} to arg 1
+			execute console command "effect %{sospech}% 2 9999 90"
+			broadcast ""
+			broadcast "&4[&cRageMC&4] &6%{sospech}% &4&lQueda usted detenido por sospechas, por favor, envieme su ID de Anydesk por /tell"
+			broadcast ""
+		else:
+			message "&4!Usted no es Staff del servidor!"
+
+command /sdd [<player>]:
+	trigger:
+		if {permission.%player%} is true:
+			set {sospech} to arg 1	
+			execute console command "effect %{sospech}% clear"
+		else:
+			message "&4!Usted no es Staff del servidor!"
